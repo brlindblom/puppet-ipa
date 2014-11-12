@@ -53,21 +53,21 @@ class ipa::params(
 		default => true,
 	}
 
-	if $valid_include_puppet_facter {
+#	if $valid_include_puppet_facter {
 #		include puppet::facter
-		$factbase = "${::puppet::facter::base}"
-		$hash = {
-			'ipa_program_ipa' => $program_ipa,
-		}
+#		$factbase = "${::puppet::facter::base}"
+#		$hash = {
+#			'ipa_program_ipa' => $program_ipa,
+#		}
 		# create a custom external fact!
-		file { "${factbase}ipa_program.yaml":
-			content => inline_template('<%= @hash.to_yaml %>'),
-			owner => root,
-			group => root,
-			mode => 644,		# u=rw,go=r
-			ensure => present,
-		}
-	}
+#		file { "${factbase}ipa_program.yaml":
+#			content => inline_template('<%= @hash.to_yaml %>'),
+#			owner => root,
+#			group => root,
+#			mode => 644,		# u=rw,go=r
+#			ensure => present,
+#		}
+#	}
 }
 
-# vim: ts=8
+# vim: ts=2
