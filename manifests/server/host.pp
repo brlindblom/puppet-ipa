@@ -19,7 +19,7 @@ define ipa::server::host(
 	$domain = $ipa::server::domain,		# default to main domain
 	$server = '',		# where the client will find the ipa server...
 	$macaddress = '',	# TODO: this should be a list...
-	#$ipaddress = '',	# NOTE: this is a bad fit here...
+	$ipaddress = '',	# NOTE: this is a bad fit here...
 	$sshpubkeys = true,	# leave this at the default to get auto sshkeys
 	#$certificate = ???,	# TODO ?
 
@@ -84,16 +84,16 @@ define ipa::server::host(
 
 	# NOTE: this is not a good fit for host-* it is part of the dns system,
 	# and not the host, and should be managed separately
-	#if $dns {
-	#	$args00 = "${ipaddress}" ? {
-	#		'' => '',
-	#		default => "--ip-address='${ipaddress}'",
-	#	}
-	#} else {
-	#	$args00 = ''
-	#	# TODO: allow this silently for now...
-	#	#warning("Host: '${valid_fqdn}' is setting an IP without DNS.")
-	#}
+	if $dns {
+		$args00 = "${ipaddress}" ? {
+			'' => '',
+			default => "--ip-address='${ipaddress}'",
+		}
+	} else {
+		$args00 = ''
+		# TODO: allow this silently for now...
+		#warning("Host: '${valid_fqdn}' is setting an IP without DNS.")
+	}
 
 	$args01 = "${macaddress}" ? {
 		'' => '',
