@@ -21,7 +21,8 @@ class ipa::params(
 	$package_ipa_client = 'ipa-client',
 	$package_ipa_admintools = 'ipa-admintools',
 	$package_pwgen = 'pwgen',
-	$package_bind = ['bind', 'bind-dyndb-ldap'],
+	$package_bind = 'bind',
+	$package_bind_dyndb = 'bind-dyndb-ldap',
 	$package_python_argparse = 'python-argparse',
 
 	# programs...
@@ -53,7 +54,7 @@ class ipa::params(
 	}
 
 	if $valid_include_puppet_facter {
-		include puppet::facter
+#		include puppet::facter
 		$factbase = "${::puppet::facter::base}"
 		$hash = {
 			'ipa_program_ipa' => $program_ipa,
